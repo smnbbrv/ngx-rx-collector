@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": "./app",
+    "noEmitHelpers": true,
+    "types":[
+      "core-js",
+      "node",
+      "jasmine"
+    ],
+    "declaration": true,
+    "outDir": "dist"
+  },
+  "files": [
+    "app/src/index.ts"
+  ]
+}

@@ -1,0 +1,19 @@
+# modules
+node_modules/
+
+# tests
+coverage/
+
+# intellij
+.idea/
+*.iml
+
+# npm errors
+npm-debug.log
+
+# js and jsmap from app
+app/**/*.js
+app/**/*.js.map
+
+# MacOS
+.DS_store
