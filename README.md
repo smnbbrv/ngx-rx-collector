@@ -7,7 +7,7 @@ Benefits:
 - One property for all component's observables
 - No `ngOnDestroy` for cancelling subscriptions anymore (but still you can use it if you want)
 
-Inspired by [philipooo's beautiful solution](http://stackoverflow.com/a/41015801/1990451).
+Inspired by [philipooo's beautiful answer](http://stackoverflow.com/a/41015801/1990451).
 
 ## Installation
 
