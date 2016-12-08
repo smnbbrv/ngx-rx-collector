@@ -1,6 +1,6 @@
 {
   "name": "ng2-rx-collector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular 2 garbage collector for RxJS subscriptions",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
