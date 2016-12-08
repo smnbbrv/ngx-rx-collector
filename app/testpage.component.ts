@@ -7,7 +7,7 @@ import { timer } from './timer';
 })
 export class TestpageComponent {
 
-  @Collected() private collected = new CollectorEvent();
+  @Collected() private collected: CollectorEvent;
 
   public ngOnInit() {
     timer.takeUntil(this.collected)

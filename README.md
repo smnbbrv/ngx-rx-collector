@@ -17,7 +17,7 @@ npm install --save ng2-rx-collector
 
 ## Usage
 
-Import the `Collected` decorator and `CollectorEvent` data type which will do all the magic.
+Import the `Collected` decorator and `CollectorEvent` data type (actually you can use `any` instead of `CollectorEvent` if this feels better) which will do all the magic.
 
 ```ts
 import { Collected, CollectorEvent } from 'ng2-rx-collector';
@@ -29,7 +29,7 @@ Then create a property on your component which will represent the collector stop
 @Component({ ... })
 export class MyComponent {
 
-  @Collected() private collected = new CollectorEvent();
+  @Collected() private collected: CollectorEvent;
 
 }
 ```
@@ -65,7 +65,7 @@ testpage.component.ts:
 
 ```ts
 import { Component } from '@angular/core';
-import { Collected, CollectedEvent } from './src';
+import { Collected, CollectorEvent } from './src';
 import { timer } from './timer';
 
 @Component({
@@ -73,7 +73,7 @@ import { timer } from './timer';
 })
 export class TestpageComponent {
 
-  @Collected() private collected: CollectedEvent;
+  @Collected() private collected: CollectorEvent;
 
   public ngOnInit() {
     timer.takeUntil(this.collected)
