@@ -8,14 +8,24 @@ var CollectorEvent = (function (_super) {
     return CollectorEvent;
 }(rxjs_1.Subject));
 exports.CollectorEvent = CollectorEvent;
+var metaProperty = Symbol();
 function Collected() {
     return function (prototype, name) {
         var onDestroy = prototype.ngOnDestroy;
+        Object.defineProperty(prototype, name, {
+            configurable: false,
+            get: function () {
+                if (!this[metaProperty]) {
+                    this[metaProperty] = new CollectorEvent();
+                }
+                return this[metaProperty];
+            }
+        });
         prototype.ngOnDestroy = function () {
             if (onDestroy) {
                 onDestroy.call(this);
             }
-            this[name].next();
+            this[metaProperty].next();
         };
     };
 }
