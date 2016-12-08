@@ -51,7 +51,7 @@ That is pretty much it.
 
 ## Example
 
-This is an example you may find in an app folder.
+This is an example you may find in the app folder.
 
 timer.ts (representing any RxJS source):
 
@@ -61,7 +61,7 @@ import { Observable } from 'rxjs';
 export let timer = Observable.interval(1000);
 ```
 
-testpage.component.ts (representing any Rx source):
+testpage.component.ts:
 
 ```ts
 import { Component } from '@angular/core';
