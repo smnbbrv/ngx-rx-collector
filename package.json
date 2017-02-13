@@ -32,10 +32,11 @@
     "angular-garbage-collector",
     "angular-unsubscribe"
   ],
-  "dependencies": {
-    "rxjs": "5.0.0-beta.12"
+  "peerDependencies": {
+    "rxjs": "^5.0.0"
   },
   "devDependencies": {
+    "rxjs": "^5.0.0",
     "@angular/core": "^2.0.0",
     "@angular/router": "^3.0.0",
     "@angular/common": "^2.0.0",
