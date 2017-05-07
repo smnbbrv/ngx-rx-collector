@@ -10,7 +10,6 @@
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": "./app",
-    "noEmitHelpers": true,
     "types":[
       "core-js",
       "node",

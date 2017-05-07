@@ -43,7 +43,7 @@
     "@angular/compiler": "^2.0.0",
     "@angular/platform-browser": "^2.0.0",
     "@angular/platform-browser-dynamic": "^2.0.0",
-    "@types/core-js": "^0.9.28",
+    "@types/core-js": "0.9.28",
     "@types/crypto-js": "^3.1.28",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^4.0.30",
