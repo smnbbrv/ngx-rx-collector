@@ -24,7 +24,9 @@ export function Collected() {
         onDestroy.call(this);
       }
 
-      this[metaProperty].next();
+      if (this[metaProperty]) {
+        this[metaProperty].next();
+      }
     };
   };
 };

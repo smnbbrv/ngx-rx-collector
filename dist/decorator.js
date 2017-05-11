@@ -36,7 +36,9 @@ function Collected() {
             if (onDestroy) {
                 onDestroy.call(this);
             }
-            this[metaProperty].next();
+            if (this[metaProperty]) {
+                this[metaProperty].next();
+            }
         };
     };
 }
