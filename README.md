@@ -13,6 +13,8 @@ Benefits:
 npm i -S ngx-rx-collector
 ```
 
+For v1 see [this branch](https://github.com/smnbbrv/ng2-rx-collector/tree/v1).
+
 ## Usage
 
 Use the `Collectable` decorator on component class and use pipe-able operator `untilDestroyed`. That is pretty much it.
