@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smnbbrv/ng2-rx-collector.git"
+    "url": "git+https://github.com/smnbbrv/ngx-rx-collector.git"
   },
   "bugs": {
-    "url": "https://github.com/smnbbrv/ng2-rx-collector/issues"
+    "url": "https://github.com/smnbbrv/ngx-rx-collector/issues"
   },
   "keywords": [
     "ngx",

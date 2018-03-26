@@ -1,4 +1,3 @@
-import { Subject } from 'rxjs/Subject';
-export declare class CollectorEvent extends Subject<void> {
-}
-export declare function Collected(): (prototype: any, name: string) => void;
+import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
+export declare function Collectable(): (constructor: Function) => void;
+export declare function untilDestroyed<T>(componentInstance: any): MonoTypeOperatorFunction<T>;

@@ -1,47 +1,33 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Subject_1 = require("rxjs/Subject");
-var CollectorEvent = (function (_super) {
-    __extends(CollectorEvent, _super);
-    function CollectorEvent() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return CollectorEvent;
-}(Subject_1.Subject));
-exports.CollectorEvent = CollectorEvent;
+var operators_1 = require("rxjs/operators");
 var metaProperty = Symbol();
-function Collected() {
-    return function (prototype, name) {
-        var onDestroy = prototype.ngOnDestroy;
-        Object.defineProperty(prototype, name, {
+var metaGetter = Symbol();
+function Collectable() {
+    return function (constructor) {
+        var onDestroy = constructor.prototype.ngOnDestroy;
+        var subject = new Subject_1.Subject();
+        Object.defineProperty(constructor.prototype, metaGetter, {
             configurable: false,
             get: function () {
-                if (!this[metaProperty]) {
-                    this[metaProperty] = new CollectorEvent();
-                }
-                return this[metaProperty];
+                return this[metaProperty] || (this[metaProperty] = new Subject_1.Subject());
             }
         });
-        prototype.ngOnDestroy = function () {
+        constructor.prototype.ngOnDestroy = function () {
             if (onDestroy) {
                 onDestroy.call(this);
             }
-            if (this[metaProperty]) {
-                this[metaProperty].next();
+            if (this[metaGetter]) {
+                subject.next();
+                subject.complete();
             }
         };
     };
 }
-exports.Collected = Collected;
-;
+exports.Collectable = Collectable;
+function untilDestroyed(componentInstance) {
+    return operators_1.takeUntil(componentInstance[metaGetter]);
+}
+exports.untilDestroyed = untilDestroyed;
 //# sourceMappingURL=decorator.js.map
