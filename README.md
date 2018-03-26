@@ -10,7 +10,7 @@ Benefits:
 ## Installation
 
 ```sh
-npm install --save ngx-rx-collector
+npm i -S ngx-rx-collector
 ```
 
 ## Usage
