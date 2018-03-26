@@ -1,32 +1,35 @@
 import { Subject } from 'rxjs/Subject';
-
-export class CollectorEvent extends Subject<void> {}
+import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
+import { takeUntil } from 'rxjs/operators';
 
 const metaProperty = Symbol();
+const metaGetter = Symbol();
 
-export function Collected() {
-  return (prototype: any, name: string) => {
-    const onDestroy = prototype.ngOnDestroy;
+export function Collectable() {
+  return (constructor: Function) => {
+    const onDestroy = constructor.prototype.ngOnDestroy;
+    const subject = new Subject();
 
-    Object.defineProperty(prototype, name, {
+    Object.defineProperty(constructor.prototype, metaGetter, {
       configurable: false,
       get() {
-        if (!this[metaProperty]) {
-          this[metaProperty] = new CollectorEvent();
-        }
-
-        return this[metaProperty];
+        return this[metaProperty] || (this[metaProperty] = new Subject());
       }
     });
 
-    prototype.ngOnDestroy = function() {
+    constructor.prototype.ngOnDestroy = function() {
       if (onDestroy) {
         onDestroy.call(this);
       }
 
-      if (this[metaProperty]) {
-        this[metaProperty].next();
+      if (this[metaGetter]) {
+        subject.next();
+        subject.complete();
       }
     };
   };
-};
+}
+
+export function untilDestroyed<T>(componentInstance: any): MonoTypeOperatorFunction<T> {
+  return takeUntil(componentInstance[metaGetter]);
+}
