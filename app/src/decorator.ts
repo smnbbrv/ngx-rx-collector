@@ -3,33 +3,22 @@ import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
 import { takeUntil } from 'rxjs/operators';
 
 const metaProperty = Symbol();
-const metaGetter = Symbol();
 
-export function Collectable() {
-  return (constructor: Function) => {
-    const onDestroy = constructor.prototype.ngOnDestroy;
-    const subject = new Subject();
+export function untilDestroyed<T>(componentInstance: any, destructorName = 'ngOnDestroy'): MonoTypeOperatorFunction<T> {
+  const originalDestructor = componentInstance['destructorName'];
 
-    Object.defineProperty(constructor.prototype, metaGetter, {
-      configurable: false,
-      get() {
-        return this[metaProperty] || (this[metaProperty] = new Subject());
-      }
-    });
+  if (!componentInstance[metaProperty]) {
+    componentInstance[metaProperty] = new Subject();
 
-    constructor.prototype.ngOnDestroy = function() {
-      if (onDestroy) {
-        onDestroy.call(this);
+    componentInstance['destructorName'] = function() {
+      if (originalDestructor) {
+        originalDestructor.call(componentInstance);
       }
 
-      if (this[metaGetter]) {
-        subject.next();
-        subject.complete();
-      }
+      componentInstance[metaProperty].next();
+      componentInstance[metaProperty].complete();
     };
-  };
-}
+  }
 
-export function untilDestroyed<T>(componentInstance: any): MonoTypeOperatorFunction<T> {
-  return takeUntil(componentInstance[metaGetter]);
+  return takeUntil(componentInstance[metaProperty]);
 }

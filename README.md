@@ -17,16 +17,16 @@ For v1 see [this branch](https://github.com/smnbbrv/ng2-rx-collector/tree/v1).
 
 ## Usage
 
-Use the `Collectable` decorator on component class and use pipe-able operator `untilDestroyed`. That is pretty much it.
+Use the pipe-able operator `untilDestroyed` and pass there your component instance. That is pretty much it.
 
 ## Example
 
-timer.ts (representing any RxJS source):
+timer.ts (representing any observable-like):
 
 ```ts
-import { Observable } from 'rxjs';
+import { interval } from 'rxjs/observable/interval';
 
-export let timer = Observable.interval(1000);
+export let timer = interval(1000);
 ```
 
 testpage.component.ts:
@@ -37,14 +37,12 @@ import { Collectable } from 'ngx-rx-collector';
 import { timer } from './timer';
 
 @Component({
-  template: 'Ticking'
+  template: 'Ticking bomb'
 })
-@Collectable()
 export class TestpageComponent {
 
   public ngOnInit() {
-    timer.pipe(untilDestroyed(this))
-         .subscribe(console.log.bind(console));
+    timer.pipe(untilDestroyed(this)).subscribe(console.log.bind(console));
   }
 
   public ngOnDestroy() {
