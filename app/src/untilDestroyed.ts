@@ -1,5 +1,4 @@
-import { Subject } from 'rxjs/Subject';
-import { MonoTypeOperatorFunction } from 'rxjs/interfaces';
+import { MonoTypeOperatorFunction, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 const metaProperty = Symbol();
