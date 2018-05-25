@@ -13,7 +13,7 @@ Benefits:
 npm i -S ngx-rx-collector
 ```
 
-For v1 see [this branch](https://github.com/smnbbrv/ng2-rx-collector/tree/v1).
+For v1 and v2 see corresponding branches
 
 ## Usage
 
