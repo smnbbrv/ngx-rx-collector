@@ -9,16 +9,15 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": "./app",
-    "types":[
-      "core-js",
-      "node",
-      "jasmine"
-    ],
+    "baseUrl": ".",
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
   "files": [
-    "app/src/index.ts"
+    "index.ts"
   ]
 }

@@ -1,6 +1,0 @@
-app/*
-index.html
-tsconfig-build.json
-tsconfig.json
-tslint.json
-webpack.config.js

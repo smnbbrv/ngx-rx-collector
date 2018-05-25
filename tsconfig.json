@@ -9,11 +9,10 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "baseUrl": "./app",
-    "types":[
-      "core-js",
-      "node",
-      "jasmine"
+    "baseUrl": ".",
+    "lib": [
+      "es2017",
+      "dom"
     ]
   },
   "exclude": [
