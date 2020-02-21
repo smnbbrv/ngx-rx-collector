@@ -1,4 +1,4 @@
-# ngx-rx-collector
+# Deprecated
 
 Angular 2+ garbage collector for RxJS subscriptions.
 
